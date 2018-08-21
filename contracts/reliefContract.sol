@@ -45,7 +45,7 @@ contract Ownable {
 contract relief is Ownable{
 
   struct distDetails{
-    uint256 campName;
+    string campname;
     string name;
     bool state;
   }
@@ -71,13 +71,13 @@ contract relief is Ownable{
     _;
   }
 
-  function registerDistributors(address distAddr,uint256 campname, string name)
+  function registerDistributors(address distAddr,string _campname, string _name)
     public
     onlyOwner
   {
-    distributor[distAddr].campName = campname;
-    distDetails[distAddr].name     = name;
-    distDetails[distAddr].state    = true;
+    distributor[distAddr].campname = _campname;
+    distributor[distAddr].name     = _name;
+    distributor[distAddr].state    = true;
   }
 
   function registerCamp(uint256 campID , string _district, string _town)
@@ -95,19 +95,19 @@ contract relief is Ownable{
     reliefsupply[packageID] = shortName;
   }
 
-  function registerUser (uint256 campID,uint256 userID)
+  function registerUser (uint256 campid,uint256 userid)
     onlydistributor
     public
   {
-    user[campID][userID] = true;
+    user[campid][userid] = true;
   }
 
-  function allotRelief(uint256 userID,uint256 reliefid)
+  function allotRelief(uint256 userid,uint256 reliefid)
     onlydistributor
-    isAlloted(userID,reliefid)
+    isAlloted(userid,reliefid)
     public
   {
-    allotment[userid][reliefID] = true;
+    allotment[userid][reliefid] = true;
   }
 
 }

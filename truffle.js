@@ -1,6 +1,7 @@
+/*
 const TruffleWalletProvider = require('truffle-wallet-provider');
 const { rinkebyWallet , liveWallet , infuraKey } = require('./wallets');
-
+*/
 module.exports = {
   migrations_directory: "./migrations",
   networks: {

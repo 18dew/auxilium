@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { a } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
-
-//import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
+import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
 
 class issueItemg extends Component {
@@ -18,6 +17,10 @@ class issueItemg extends Component {
           <div className="pure-u-1-1 header">
             <img src={logo} alt="drizzle-logo" width='35%' height='35%'/>
             <h1>Issue Item Global</h1>
+          </div>
+
+          <div className="pure-u-1-1 header">
+            <ContractForm contract="ReliefERC20" method="mintItemAdmin" />
           </div>
 
           <div className="pure-u-1-1 header">

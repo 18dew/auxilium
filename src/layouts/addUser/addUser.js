@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { a } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
-
-//import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
+import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
 
 class addUser extends Component {
@@ -19,6 +18,10 @@ class addUser extends Component {
             <img src={logo} alt="drizzle-logo" width='35%' height='35%'/>
             <h1>Add Users</h1>
             <p>Simple management system to manage inventory of items received by various relief camps accross Kerela</p>
+          </div>
+
+          <div className="pure-u-1-1 header">
+            <ContractForm contract="ReliefERC20" method="addUser" />
           </div>
 
           <div className="pure-u-1-1 header">

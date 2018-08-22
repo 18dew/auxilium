@@ -1,5 +1,5 @@
-var reliefC = artifacts.require("./reliefContract.sol");
+var Migrations = artifacts.require("Migrations");
 
 module.exports = function(deployer) {
-  deployer.deploy(reliefC);
+  deployer.deploy(Migrations);
 };

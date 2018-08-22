@@ -26,6 +26,7 @@ contract ReliefERC20 is Ownable{
     string itemName;
     string itemDescription;
     bool state;
+    bool isCentral;
   }
 
   uint256 noItems;
@@ -48,11 +49,21 @@ contract ReliefERC20 is Ownable{
     require( (user[msg.sender].isDist == true) && (user[msg.sender].state == true) );
     _;
   }
+
   modifier isValidTransfe( uint256 itemID , uint256 qty ) {
     require( balance[msg.sender][itemID] >= qty );
     _;
   }
 
+  modifier isCentralItem( uint256 itemID ) {
+    require( item[itemID].isCentral == true );
+    _;
+  }
+
+  modifier isnonCentralItem( uint256 itemID ) {
+    require( item[itemID].isCentral == false );
+    _;
+  }
 
   function addCamp( address _userAddr , string _campName , string _location, string _ContactDetails )
     onlyOwner
@@ -80,7 +91,7 @@ contract ReliefERC20 is Ownable{
     user[_userAddr].state = true;
   }
 
-  function addItem( string _item , string _itemDesc )
+  function addItem( string _item , string _itemDesc , bool _isCentral )
     onlyOwner
     public
   {
@@ -88,10 +99,19 @@ contract ReliefERC20 is Ownable{
     item[noItems].itemName = _item;
     item[noItems].itemDescription = _itemDesc;
     item[noItems].state = true;
+    item[noItems].isCentral = _isCentral;
+  }
+
+  function removeUser( address _addr)
+    onlyOwner
+    public
+  {
+    user[_addr].state = false;
   }
 
   function mintItemAdmin ( uint256 _itemid , uint256 _distid , uint256 qty )
     onlyOwner
+    isCentralItem(_itemid)
     public
   {
     balance[coutDistmap[_distid]][_itemid] = qty;
@@ -99,6 +119,7 @@ contract ReliefERC20 is Ownable{
 
   function mintItemDist ( uint256 _itemid , uint256 qty )
     isDist
+    isnonCentralItem(_itemid)
     public
   {
     balance[msg.sender][_itemid] = qty;

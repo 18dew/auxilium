@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 //import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
 
-class Home extends Component {
+class issueIteml extends Component {
   constructor(props, context) {
     super(props)
   }
@@ -17,58 +17,13 @@ class Home extends Component {
         <div className="pure-g">
           <div className="pure-u-1-1 header">
             <img src={logo} alt="drizzle-logo" width='35%' height='35%'/>
-            <h1>Kerela Relief camp inventory system</h1>
-            <p>Simple management system to manage inventory of items received by various relief camps accross Kerela</p>
-          </div>
-
-          <div className="pure-u-1-3 header">
-            <h3><a href='/addcamp'>Add Camp </a></h3>
-            <p> Only owner can add Camp </p>
-          </div>
-
-          <div className="pure-u-1-3 header">
-            <h3><a href='/adduser'>Add User Details </a></h3>
-            <p> Only owner and Camp admins can add users </p>
-          </div>
-
-          <div className="pure-u-1-3 header">
-            <h3><a href='/additem'>Add Items </a></h3>
-            <p> Only owner can add Items </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/listuser'>List Users </a></h3>
-            <p> List of all users </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/listitem'>List Items </a></h3>
-            <p> List inventory of local </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/issueitemglobal'>Issue Items to Camp</a></h3>
-            <p> Issue items to camps </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/issueitemlocal'>Add Item received to camp</a></h3>
-            <p> Distributors can add local donations to camp </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/allotitem'>Allotment of Item</a></h3>
-            <p> Allot item to users </p>
-          </div>
-
-          <div className="pure-u-1-2 header">
-            <h3><a href='/removeuser'>Remove User</a></h3>
-            <p> Only owner can perform this action </p>
+            <h1>Issue Item Local</h1>
           </div>
 
           <div className="pure-u-1-1 header">
           <br/><br/>
           <br/><br/>
+            <h4><a href='/'> Back to Home </a></h4>
             <p>By love </p><p>from Ethereum and Etherum Classic Communities</p>
             <br/><br/>
           </div>
@@ -80,13 +35,13 @@ class Home extends Component {
   }
 }
 
-Home.contextTypes = {
+issueIteml.contextTypes = {
   drizzle: PropTypes.object,
   drizzleStore: PropTypes.object,
 }
 
 
-export default Home
+export default issueIteml
 
 /*
 <div className="pure-u-1-1">

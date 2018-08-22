@@ -2,7 +2,7 @@ import ReliefERC20 from './../build/contracts/ReliefERC20.json'
 
 const drizzleOptions = {
   web3: {
-    block: false,
+    block: true,
     fallback: {
       type: 'ws',
       url: 'ws://rinkeby.infura.io/ws'

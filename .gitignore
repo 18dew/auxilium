@@ -29,9 +29,6 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
 # Dependency directories
 node_modules/
 jspm_packages/
@@ -60,7 +57,6 @@ typings/
 # next.js build output
 .next
 
-build
 build_webpack
 wallets/rinkeby/wallet.json
 wallets/live/wallet.json

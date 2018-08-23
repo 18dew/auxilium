@@ -11,7 +11,7 @@ module.exports = {
     },
     kalido: {
       provider: () => {
-        return new TruffleWalletProvider(rinkebyWallet, 'https://a0jd3u3v09:SHN6dvSaupczf1Io6sxu_NR8HeJnv7zFc5rfihrP8HQ@a0v3lrej1d-a0hn3b8wbi-rpc.ap-southeast-2.kaleido.io');
+        return new TruffleWalletProvider(rinkebyWallet, 'https://a0bk0tc49c:t0tPLJxdmTuXZstNlk1cHBlG1xnXuzy5rsfi2JASrKA@a0v3lrej1d-a0hn3b8wbi-rpc.ap-southeast-2.kaleido.io');
       },
       network_id: "*", // Match any network id
       gasPrice: 0,
@@ -42,7 +42,7 @@ module.exports = {
   }
 };
 /*
-  TEMP Keys 
+  TEMP Keys
  UID : a0jd3u3v09
  PWD : SHN6dvSaupczf1Io6sxu_NR8HeJnv7zFc5rfihrP8HQ
 

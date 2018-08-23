@@ -5,9 +5,9 @@ let AuthToken
 const deployA = (deployer)=>{
   return new Promise(async function(resolve, reject) {
     try{
-      await deployer.deploy(tokenC)
-      AuthToken = await tokenC.deployed()
-      console.log(`ReliefERC20 address ${tokenC.address}`)
+      await deployer.deploy(tokenC,{privateFor: ["LufUMmRvJlOV/et8Y1o9ptEa2aUpjoyL7d/Gzf7tN2E="]})
+      AuthToken = await tokenC.deployed();
+      console.log(`ReliefERC20 address ${tokenC.address}`);
       resolve(tokenC.address);
     }catch(e){
       console.log(e);

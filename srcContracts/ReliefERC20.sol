@@ -18,7 +18,6 @@ contract ReliefERC20 is Ownable{
     string contactDetail;
     string location;
     uint256 no;
-    bool isDist;
     bool state;
   }
 
@@ -33,25 +32,27 @@ contract ReliefERC20 is Ownable{
   uint256 noDist;
   uint256 noUser;
 
-  mapping (uint256 => address ) public coutUsermap;
+  mapping (uint256 => bytes32 ) public coutUsermap;
   mapping (uint256 => address ) public coutDistmap;
-  mapping (address => userDetail ) public user;
+  mapping (bytes32 => userDetail ) public user;
+  mapping (address => userDetail ) public dist;
 
   mapping ( uint256 => itemDetail ) public item;
-  mapping ( address => mapping( uint256 => uint256 ) ) public balance;
+  mapping ( address => mapping( uint256 => uint256 ) ) public balanceDist;
+  mapping ( bytes32 => mapping( uint256 => uint256 ) ) public balanceUser;
 
-  modifier isUser( address _userAddr){
+  modifier isUser( bytes32 _userAddr){
     require(user[_userAddr].state == true );
     _;
   }
 
   modifier isDist( ){
-    require( (user[msg.sender].isDist == true) && (user[msg.sender].state == true) );
+    require( (dist[msg.sender].state == true) );
     _;
   }
 
   modifier isValidTransfe( uint256 itemID , uint256 qty ) {
-    require( balance[msg.sender][itemID] >= qty );
+    require( balanceDist[msg.sender][itemID] >= qty );
     _;
   }
 
@@ -71,14 +72,13 @@ contract ReliefERC20 is Ownable{
   {
     noDist +=1;
     coutDistmap[noUser] = _userAddr;
-    user[_userAddr].name = _campName;
-    user[_userAddr].contactDetail = _ContactDetails;
-    user[_userAddr].location = _location;
-    user[_userAddr].isDist = true;
-    user[_userAddr].state = true;
+    dist[_userAddr].name = _campName;
+    dist[_userAddr].contactDetail = _ContactDetails;
+    dist[_userAddr].location = _location;
+    dist[_userAddr].state = true;
   }
 
-  function addUser( address _userAddr , string _name , string _location, string _ContactDetails )
+  function addUser( bytes32 _userAddr , string _name , string _location, string _ContactDetails )
     isDist
     public
   {
@@ -87,7 +87,6 @@ contract ReliefERC20 is Ownable{
     user[_userAddr].name = _name;
     user[_userAddr].contactDetail = _ContactDetails;
     user[_userAddr].location = _location;
-    user[_userAddr].isDist = false;
     user[_userAddr].state = true;
   }
 
@@ -102,11 +101,11 @@ contract ReliefERC20 is Ownable{
     item[noItems].isCentral = _isCentral;
   }
 
-  function removeUser( address _addr)
+  function removeUser( bytes32 _uid)
     onlyOwner
     public
   {
-    user[_addr].state = false;
+    user[_uid].state = false;
   }
 
   function mintItemAdmin ( uint256 _itemid , uint256 _distid , uint256 qty )
@@ -114,7 +113,7 @@ contract ReliefERC20 is Ownable{
     isCentralItem(_itemid)
     public
   {
-    balance[coutDistmap[_distid]][_itemid] = qty;
+    balanceDist[coutDistmap[_distid]][_itemid] = qty;
   }
 
   function mintItemDist ( uint256 _itemid , uint256 qty )
@@ -122,7 +121,7 @@ contract ReliefERC20 is Ownable{
     isnonCentralItem(_itemid)
     public
   {
-    balance[msg.sender][_itemid] = qty;
+    balanceDist[msg.sender][_itemid] = qty;
   }
 
   function transfer ( uint256 _itemid , uint256 qty, uint256 userID )
@@ -130,8 +129,8 @@ contract ReliefERC20 is Ownable{
     isUser(coutUsermap[userID])
     public
   {
-    balance[msg.sender][_itemid] = balance[msg.sender][_itemid].sub(qty);
-    balance[coutUsermap[userID]][_itemid] = balance[coutUsermap[userID]][_itemid].add(qty);
+    balanceDist[msg.sender][_itemid] = balanceDist[msg.sender][_itemid].sub(qty);
+    balanceUser[coutUsermap[userID]][_itemid] = balanceUser[coutUsermap[userID]][_itemid].add(qty);
   }
 
 

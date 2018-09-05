@@ -1,9 +1,11 @@
+import nonWeb3 from './util/web3/nonWeb3';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { DrizzleProvider } from 'drizzle-react'
 
+nonWeb3();
 // Layouts
 import App from './App'
 import { LoadingContainer } from 'drizzle-react-components'
@@ -21,13 +23,14 @@ import issueItemlContainer from './layouts/issueIteml/issueItemlContainer'
 import listItemsContainer from './layouts/listItems/listItemsContainer'
 import listUserContainer from './layouts/listUser/listUserContainer'
 import removeUserContainer from './layouts/removeUser/removeUserContainer'
+import addKeysContainer from './layouts/addKeys/addKeysContainer'
+
 // Initialize react-router-redux.
 const history = syncHistoryWithStore(browserHistory, store)
 
 
 ReactDOM.render((
     <DrizzleProvider options={drizzleOptions} store={store}>
-      <LoadingContainer>
         <Router history={history} store={store}>
           <Route path="/" component={App}>
             <IndexRoute component={HomeContainer} />
@@ -59,8 +62,10 @@ ReactDOM.render((
           <Route path="/removeuser" component={App}>
             <IndexRoute component={removeUserContainer} />
           </Route>
+          <Route path="/addKeys" component={App}>
+            <IndexRoute component={addKeysContainer} />
+          </Route>
         </Router>
-      </LoadingContainer>
     </DrizzleProvider>
   ),
   document.getElementById('root')

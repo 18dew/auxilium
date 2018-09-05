@@ -13,7 +13,7 @@ module.exports = {
       provider: () => {
         return new TruffleWalletProvider(rinkebyWallet, 'https://a0bk0tc49c:t0tPLJxdmTuXZstNlk1cHBlG1xnXuzy5rsfi2JASrKA@a0v3lrej1d-a0hn3b8wbi-rpc.ap-southeast-2.kaleido.io');
       },
-      network_id: "*", // Match any network id
+      network_id: "929910069", // Match any network id
       gasPrice: 0,
       gas: 4500000
     },

@@ -1,6 +1,5 @@
 # kerelaR
 
-Gitter chat
 [![Gitter chat](https://badges.gitter.im/USER/REPO.png)](https://gitter.im/kerelaR/Lobby# "Gitter chat")
 
 Smart Contracts for kerela Relief Operations

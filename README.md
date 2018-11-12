@@ -10,3 +10,11 @@ current contracts on Rinkeby is at https://rinkeby.etherscan.io/address/0xa3570b
 
 
 These Contract can be considered as a tamplate for any disaster relief operation accross the world. 
+
+
+# Tech Applied 
+ - Ethereum 
+ - Solidity 
+ - React 
+ - Truffle 
+ - Drizzle
